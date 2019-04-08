@@ -1,0 +1,68 @@
+<?php
+
+class extension_upload_fix_jpeg_orientation extends Extension
+{
+
+    /**
+     * Delegates and callbacks
+     *
+     * @return array
+     */
+    public function getSubscribedDelegates()
+    {
+        return array(
+            array(
+                'page'     => '*',
+                'delegate' => 'ManipulateTmpFile',
+                'callback' => 'manipulateTmpFile'
+            )
+        );
+    }
+
+    public function manipulateTmpFile($context)
+    {
+        if (extension_loaded('gd') && function_exists('gd_info')) {
+            $tmp_file = $context['tmp'];
+            $mimetype = GENERAL::getMimeType($tmp_file);
+
+            if ($mimetype === 'image/jpeg') {
+
+                $exif = exif_read_data( $tmp_file );
+
+                if (isset($exif) && isset($exif['Orientation'])) {
+
+                    $this->rotateImage($tmp_file, $exif['Orientation']);
+                }
+            }
+        }
+    }
+
+    private function rotateImage($tmp_file, $orientation)
+    {
+        $img = imagecreatefromjpeg($tmp_file);
+        $ort = $orientation;
+
+        if ($img !== false  && $ort > 1) {
+            // image rotation
+            if ($ort == 8 || $ort == 7) {
+                $img = imagerotate($img, 90, null);
+            }
+            if ($ort == 3 || $ort == 4){
+                $img = imagerotate($img, 180, null);
+            }
+            if ($ort == 6 || $ort == 5) {
+                $img = imagerotate($img, 270, null);
+            }
+
+            // flipping horizontally
+            if ($ort == 2 || $ort == 7 || $ort == 4 || $ort == 5) {
+                imageflip($img, IMG_FLIP_HORIZONTAL);
+            }
+
+            if ($img !== false) {
+                imagejpeg($img, $tmp_file, 100);
+                imagedestroy($img);
+            }
+        }
+    }
+}
