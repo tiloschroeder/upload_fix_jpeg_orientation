@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="upload_fix_jpeg_orientation" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+    <name>Upload Fix JPEG Orientation</name>
+    <description>Custom functionalities for the upload field (frontend/backend).</description>
+    <repo type="github">https://github.com/tiloschroeder/upload_fix_jpeg_orientation</repo>
+    <types>
+        <type>Other</type>
+    </types>
+    <authors>
+        <author>
+            <name github="tiloschroeder">Tilo Schröder</name>
+            <website>https://tiloschroeder.de</website>
+        </author>
+    </authors>
+    <releases>
+        <release version="1.0.0" date="2019-01-26" min="2.7.0" max="2.7.x">
+            - Initial release
+        </release>
+    </releases>
+</extension>
