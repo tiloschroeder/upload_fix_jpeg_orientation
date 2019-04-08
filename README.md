@@ -14,6 +14,8 @@ __Note__: This extension requires a little hack (use at your own risk).
 
 ## The hack: Add a delegate
 
+To work this extension, it needs a delegate in the upload function of Symphony ([What is a delegate?](https://www.getsymphony.com/learn/concepts/view/delegates/)).
+
 1. Go to the folder ```symphony/lib/toolkit``` and open the file ```class.general.php```.
 2. After ```line 1468``` insert the following line:
 ```php
