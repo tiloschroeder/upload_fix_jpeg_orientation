@@ -23,15 +23,20 @@ class extension_upload_fix_jpeg_orientation extends Extension
     {
         if (extension_loaded('gd') && function_exists('gd_info')) {
             $tmp_file = $context['tmp'];
+
             $mimetype = GENERAL::getMimeType($tmp_file);
 
             if ($mimetype === 'image/jpeg') {
-
-                $exif = exif_read_data( $tmp_file );
-
-                if (isset($exif) && isset($exif['Orientation'])) {
-
-                    $this->rotateImage($tmp_file, $exif['Orientation']);
+                try {
+                    $exif = exif_read_data( $tmp_file );
+                    if (isset($exif) && isset($exif['Orientation'])) {
+                        $this->rotateImage($tmp_file, $exif['Orientation']);
+                    }
+                }
+                catch (Exception $ex) {
+                    if (Symphony::Log()) {
+                       Symphony::Log()->pushExceptionToLog($ex, true);
+                    }
                 }
             }
         }

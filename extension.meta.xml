@@ -13,7 +13,13 @@
         </author>
     </authors>
     <releases>
-        <release version="1.0.0" date="2019-01-26" min="2.7.0" max="2.7.x">
+        <release version="1.0.2" date="2019-07-01" min="2.7.0" max="2.7.x">
+            - Bug fix for uploaded images with corrupt header
+        </release>
+        <release version="1.0.1" date="2019-04-08" min="2.7.0" max="2.7.x">
+            - Edit readme
+        </release>
+        <release version="1.0.0" date="2019-04-07" min="2.7.0" max="2.7.x">
             - Initial release
         </release>
     </releases>
