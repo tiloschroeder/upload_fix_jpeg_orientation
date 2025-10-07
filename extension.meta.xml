@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension id="upload_fix_jpeg_orientation" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
     <name>Upload Fix JPEG Orientation</name>
-    <description>Custom functionalities for the upload field (frontend/backend).</description>
+    <description>Activate the extension to automatically rotate or flip images when uploading. Note: EXIF metadata will be deleted.</description>
     <repo type="github">https://github.com/tiloschroeder/upload_fix_jpeg_orientation</repo>
     <types>
         <type>Other</type>
     </types>
     <authors>
         <author>
-            <name github="tiloschroeder">Tilo Schröder</name>
-            <website>https://tiloschroeder.de</website>
+            <name github="sym8-io">Sym8</name>
+            <website>https://sym8.io</website>
         </author>
     </authors>
     <releases>
-        <release version="1.0.2" date="2019-07-01" min="2.7.0" max="2.7.x">
+        <release version="1.0.3" date="2025-05-15" min="2.7.0">
+            - added vertically flip
+        </release>
+        <release version="1.0.2" date="2019-07-01" min="2.7.0">
             - Bug fix for uploaded images with corrupt header
         </release>
         <release version="1.0.1" date="2019-04-08" min="2.7.0" max="2.7.x">
